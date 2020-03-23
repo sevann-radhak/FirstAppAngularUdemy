@@ -10,13 +10,19 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
+// Register components
+import { ButtonAgregar } from './components/button/Button.compoent';
+import { Weedkdays } from './components/Weekdays/Weekdays.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    ButtonAgregar,
+    Weedkdays
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
