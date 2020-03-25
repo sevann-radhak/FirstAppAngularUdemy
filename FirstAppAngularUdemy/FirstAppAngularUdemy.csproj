@@ -21,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,15 +33,13 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\components\button\Button.compoent.ts" />
     <None Remove="ClientApp\src\app\components\Weekdays\Weekdays.component.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\services\" />
+    <None Remove="ClientApp\src\app\services\Product.Service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\components\button\Button.compoent.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\Weekdays\Weekdays.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\Product.Service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

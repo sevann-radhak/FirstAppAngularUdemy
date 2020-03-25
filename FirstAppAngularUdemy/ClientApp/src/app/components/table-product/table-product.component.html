@@ -1,0 +1,17 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor="let header of headers">{{header}}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{product.idProduct}}</td>
+      <td>{{product.productName}}</td>
+      <td>{{product.productPrice}}</td>
+      <td>{{product.productStock}}</td>
+      <td>{{product.categoryName}}</td>
+    </tr>
+  </tbody>
+</table>
