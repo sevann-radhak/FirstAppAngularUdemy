@@ -15,11 +15,14 @@ import { HttpModule } from '@angular/http';
 import { ButtonAgregar } from './components/button/Button.compoent';
 import { Weedkdays } from './components/Weekdays/Weekdays.component';
 import { TableProductComponent } from './components/table-product/table-product.component';
+import { SearchProductNameComponent } from './components/search-product-name/search-product-name.component';
+import { FilterProductNameComponent } from './components/filter-product-name/filter-product-name.component';
+import { SearchProductCategoryComponent } from './components/search-product-category/search-product-category.component';
+import { FilterProductCategoryComponent } from './components/filter-product-category/filter-product-category.component';
 
 // Register services
 import { ProductService } from './services/Product.Service';
-import { SearchProductNameComponent } from './components/search-product-name/search-product-name.component';
-import { FilterProductNameComponent } from './components/filter-product-name/filter-product-name.component';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { FilterProductNameComponent } from './components/filter-product-name/fil
     Weedkdays,
     TableProductComponent,
     SearchProductNameComponent,
-    FilterProductNameComponent
+    FilterProductNameComponent,
+    SearchProductCategoryComponent,
+    FilterProductCategoryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,9 +50,10 @@ import { FilterProductNameComponent } from './components/filter-product-name/fil
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'products-list', component: TableProductComponent },
       { path: 'filter-product-name', component: FilterProductNameComponent },
+      { path: 'filter-product-category', component: FilterProductCategoryComponent },
     ])
   ],
-  providers: [ProductService],
+  providers: [ProductService, CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

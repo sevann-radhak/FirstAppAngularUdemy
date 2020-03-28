@@ -1,0 +1,13 @@
+<label>Category Name: </label>
+<select class="form-control" #category>
+  <option value=""> -- Select --</option>
+  <option *ngFor="let category of categories" [value]="category.idCategory">
+    {{category.nameCategory}}
+  </option>
+</select>
+
+<div class="mt-4" style="text-align: center">
+  <input type="button" (click)="clear(category)" value="Cancel" class="btn btn-default" />
+  <input type="button" (click)="searchCategory(category)" value="Search" class="btn btn-primary" />
+</div>
+<br />

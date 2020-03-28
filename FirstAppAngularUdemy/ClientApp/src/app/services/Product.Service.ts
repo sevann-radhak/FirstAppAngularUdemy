@@ -20,4 +20,10 @@ export class ProductService
     return this.http.get(`${this.urlBase}api/Product/SearchProduct/${product}`)
       .map(res => res.json());
   }
+
+  public searchProductsByCategory(categoryId) {
+    return this.http.get(`${this.urlBase}api/Product/SearchProductsByCategory/${categoryId}`)
+      .map(res => res.json());
+  }
+
 }
