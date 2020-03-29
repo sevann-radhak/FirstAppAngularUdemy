@@ -1,0 +1,6 @@
+<label>User type</label>
+<select class="form-control mt-4" #userType (change)="filter(userType)">
+  <option value=""> -- Select -- </option>
+  <option *ngFor="let userType of userTypes" [value]="userType.idUserType">{{userType.description}}</option>
+</select>
+<br />

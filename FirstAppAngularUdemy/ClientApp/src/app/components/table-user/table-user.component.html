@@ -1,0 +1,15 @@
+<table class="table table-hover table-responsive table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor="let header of headers">{{header}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.idUser}}</td>
+      <td>{{user.nameUser}}</td>
+      <td>{{user.namePerson}}</td>
+      <td>{{user.userType}}</td>
+    </tr>
+  </tbody>
+</table>

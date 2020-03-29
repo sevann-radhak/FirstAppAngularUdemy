@@ -47,6 +47,11 @@
                 <span class='glyphicon glyphicon-th-list'></span> Filter Person
               </a>
             </li>
+            <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/filter-user-usertype"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Filter User by User type
+              </a>
+            </li>
           </ul>
         </div>
     </div>

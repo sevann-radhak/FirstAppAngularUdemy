@@ -22,11 +22,15 @@ import { FilterProductCategoryComponent } from './components/filter-product-cate
 import { TablePersonComponent } from './components/table-person/table-person.component';
 import { SearchPersonNameComponent } from './components/search-person-name/search-person-name.component';
 import { FilterPersonNameComponent } from './components/filter-person-name/filter-person-name.component';
+import { SearchUserTypeuserComponent } from './components/search-user-typeuser/search-user-typeuser.component';
+import { FilterUserTypeuserComponent } from './components/filter-user-typeuser/filter-user-typeuser.component';
+import { TableUserComponent } from './components/table-user/table-user.component';
 
 // Register services
 import { CategoryService } from './services/category.service';
 import { PersonService } from './services/person.service';
 import { ProductService } from './services/Product.Service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,10 @@ import { ProductService } from './services/Product.Service';
     FilterProductCategoryComponent,
     TablePersonComponent,
     SearchPersonNameComponent,
-    FilterPersonNameComponent
+    FilterPersonNameComponent,
+    SearchUserTypeuserComponent,
+    FilterUserTypeuserComponent,
+    TableUserComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -59,9 +66,10 @@ import { ProductService } from './services/Product.Service';
       { path: 'filter-product-name', component: FilterProductNameComponent },
       { path: 'filter-product-category', component: FilterProductCategoryComponent },
       { path: 'filter-person-name', component: FilterPersonNameComponent },
+      { path: 'filter-user-usertype', component: FilterUserTypeuserComponent },
     ])
   ],
-  providers: [CategoryService, PersonService, ProductService],
+  providers: [CategoryService, PersonService, ProductService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
