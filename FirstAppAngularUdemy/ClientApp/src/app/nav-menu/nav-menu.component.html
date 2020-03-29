@@ -42,6 +42,11 @@
                 <span class='glyphicon glyphicon-th-list'></span> Filter Product by Category
               </a>
             </li>
+            <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/filter-person-name"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Filter Person
+              </a>
+            </li>
           </ul>
         </div>
     </div>
