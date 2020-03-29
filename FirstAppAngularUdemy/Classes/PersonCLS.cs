@@ -18,5 +18,12 @@ namespace FirstAppAngularUdemy.Classes
         public string Email { get; set; }
 
         public int BHabilitado { get; set; }
+
+        // Additional props
+        public string Name { get; set; }
+
+        public string apPaterno { get; set; }
+
+        public string apMaterno { get; set; }
     }
 }

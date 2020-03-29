@@ -24,7 +24,7 @@ namespace FirstAppAngularUdemy.Controllers
                        where person.Bhabilitado == 1
                        select new PersonCLS
                        {
-                           Birthday = (DateTime)person.Fechanacimiento,
+                           //Birthday = (DateTime)person.Fechanacimiento,
                            Email = person.Correo,
                            FullName = $"{person.Nombre} {person.Appaterno} {person.Appaterno}",
                            IdPerson = person.Iidpersona,
@@ -62,6 +62,42 @@ namespace FirstAppAngularUdemy.Controllers
                             PhoneNumber = person.Telefono
                         }).ToList();
             }
+        }
+
+        [HttpPost]
+        [Route("api/People/savePerson")]
+        public bool savePerson([FromBody]PersonCLS oPersonCLSL)
+        {
+            bool response = false;
+
+            using (BDRestauranteContext bd = new BDRestauranteContext())
+            {
+                Persona oPerson = new Persona
+                {
+                    Apmaterno = oPersonCLSL.apMaterno,
+                    Appaterno = oPersonCLSL.apPaterno,
+                    Iidpersona = oPersonCLSL.IdPerson,
+                    Nombre = oPersonCLSL.Name,
+                    Correo = oPersonCLSL.Email,
+                    Telefono = oPersonCLSL.PhoneNumber,
+                    Bhabilitado = 1,
+                    Btieneusuario = 0
+                };
+
+                bd.Add(oPerson);
+
+                try
+                {
+                    bd.SaveChanges();
+                    response = true;
+                }
+                catch (System.Exception)
+                {
+                }
+            }
+            
+
+            return response;
         }
     }
 }

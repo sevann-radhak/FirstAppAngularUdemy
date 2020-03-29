@@ -21,4 +21,9 @@ export class PersonService {
     return this.http.get(`${this.urlBase}api/People/FilterPerson/${name}`)
       .map(res => res.json());
   }
+
+  public createPerson(person) {
+    return this.http.post(`${this.urlBase}api/People/savePerson`, person)
+      .map(res => res.json());
+  }
 }

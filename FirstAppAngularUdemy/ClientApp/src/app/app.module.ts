@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -31,6 +31,8 @@ import { CategoryService } from './services/category.service';
 import { PersonService } from './services/person.service';
 import { ProductService } from './services/Product.Service';
 import { UserService } from './services/user.service';
+import { SettingsPersonComponent } from './components/settings-person/settings-person.component';
+import { SettingsFormPersonComponent } from './components/settings-form-person/settings-form-person.component';
 
 @NgModule({
   declarations: [
@@ -51,13 +53,16 @@ import { UserService } from './services/user.service';
     FilterPersonNameComponent,
     SearchUserTypeuserComponent,
     FilterUserTypeuserComponent,
-    TableUserComponent
+    TableUserComponent,
+    SettingsPersonComponent,
+    SettingsFormPersonComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -67,6 +72,8 @@ import { UserService } from './services/user.service';
       { path: 'filter-product-category', component: FilterProductCategoryComponent },
       { path: 'filter-person-name', component: FilterPersonNameComponent },
       { path: 'filter-user-usertype', component: FilterUserTypeuserComponent },
+      { path: 'settings-person', component: SettingsPersonComponent },
+      { path: 'settings-person/:id', component: SettingsFormPersonComponent },
     ])
   ],
   providers: [CategoryService, PersonService, ProductService, UserService],

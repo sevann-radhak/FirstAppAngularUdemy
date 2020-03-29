@@ -9,7 +9,8 @@ import { PersonService } from './../../services/person.service';
 export class TablePersonComponent implements OnInit {
 
   @Input() people: any;
-  headers: string[] = ["ID", "Name", "Birthday", "Phone", "Email"];
+  @Input() isSettings: boolean = false;
+  headers: string[] = ["ID", "Name", "Phone", "Email"];
 
   constructor(private personService: PersonService) { }
 
