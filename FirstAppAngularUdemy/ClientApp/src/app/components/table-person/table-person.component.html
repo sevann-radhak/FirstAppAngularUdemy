@@ -9,12 +9,12 @@
     <tr *ngFor="let person of people">
       <td>{{person.idPerson}}</td>
       <td>{{person.fullName}}</td>
-      <!--<td>{{person.birthday}}</td>-->
+      <td>{{person.birthday}}</td>
       <td>{{person.phoneNumber}}</td>
       <td>{{person.email}}</td>
       <td *ngIf="isSettings">
-        <i class="glyphicon glyphicon-edit btn btn-primary btn-sm"></i>
-        <i class="glyphicon glyphicon-trash btn btn-danger btn-sm"></i>
+        <i [routerLink]="['/settings-person', person.idPerson]" class="glyphicon glyphicon-edit btn btn-primary btn-sm"></i>
+        <i class="glyphicon glyphicon-trash btn btn-danger btn-sm" (click)="deletePerson(person.idPerson)"></i>
       </td>
     </tr>
   </tbody>

@@ -13,7 +13,9 @@ namespace FirstAppAngularUdemy.Classes
 
         public string PhoneNumber { get; set; }
 
-        public DateTime Birthday{ get; set; }
+        public DateTime? Birthday{ get; set; }
+
+        public string BirthdayString { get; set; }
 
         public string Email { get; set; }
 

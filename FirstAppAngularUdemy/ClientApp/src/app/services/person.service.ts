@@ -12,7 +12,7 @@ export class PersonService {
     this.urlBase = baseUrl;
   }
 
-  public getPerson() {
+  public getPeople() {
     return this.http.get(`${this.urlBase}api/People/ListPeople`)
       .map(res => res.json());
   }
@@ -24,6 +24,16 @@ export class PersonService {
 
   public createPerson(person) {
     return this.http.post(`${this.urlBase}api/People/savePerson`, person)
+      .map(res => res.json());
+  }
+
+  public getPerson(idPerson) {
+    return this.http.get(`${this.urlBase}api/People/getPerson/${idPerson}`)
+      .map(res => res.json());
+  }
+
+  public deletePerson(idPerson) {
+    return this.http.get(`${this.urlBase}api/People/deletePerson/${idPerson}`)
       .map(res => res.json());
   }
 }
