@@ -1,0 +1,101 @@
+<h1>{{title}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="product" (ngSubmit)="saveData()">
+      <div class="form-group">
+        <label>Id Product</label>
+        <input type="text" class="form-control" formControlName="IdProduct" readonly />
+      </div>
+
+      <div class="form-group">
+        <label>Product</label>
+        <input type="text" class="form-control" formControlName="ProductName" placeholder="Product name"/>
+        <div *ngIf="product.controls['ProductName'].invalid
+             && (product.controls['ProductName'].dirty || product.controls['ProductName'].touched)"
+             class="text-danger">
+
+          <div *ngIf="product.controls['ProductName'].hasError('required')">
+            The name field is mandatory
+          </div>
+
+          <div *ngIf="product.controls['ProductName'].hasError('maxlength')">
+            The name can not have more than 100 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Price</label>
+        <input type="number" min="0" class="form-control" formControlName="ProductPrice" placeholder="$" />
+        <div *ngIf="product.controls['ProductPrice'].invalid
+             && (product.controls['ProductPrice'].dirty || product.controls['ProductPrice'].touched)"
+             class="text-danger">
+
+          <div *ngIf="product.controls['ProductPrice'].hasError('required')">
+            The price field is mandatory
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select formControlName="idcategoria" class="form-control">
+          <option value=""> -- Select -- </option>
+          <option *ngFor="let category of categories" [value]="category.idCategory"> {{category.nameCategory}} </option>
+        </select>
+
+        <div *ngIf="product.controls['idcategoria'].invalid
+             && (product.controls['idcategoria'].dirty || product.controls['idcategoria'].touched)"
+             class="text-danger">
+
+          <div *ngIf="product.controls['idcategoria'].hasError('required')">
+            The category field is mandatory
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Mark</label>
+        <select formControlName="idmarca" class="form-control">
+          <option value=""> -- Select -- </option>
+          <option *ngFor="let mark of marks" [value]="mark.iidmarca"> {{mark.nombre}} </option>
+        </select>
+        
+        <div *ngIf="product.controls['idmarca'].invalid
+             && (product.controls['idmarca'].dirty || product.controls['idmarca'].touched)"
+             class="text-danger">
+
+          <div *ngIf="product.controls['idmarca'].hasError('required')">
+            The mark field is mandatory
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Stock</label>
+        <input type="number" min="0" class="form-control" formControlName="ProductStock" placeholder="Stock quantity" />
+
+        <div *ngIf="product.controls['ProductStock'].invalid
+             && (product.controls['ProductStock'].dirty || product.controls['ProductStock'].touched)"
+             class="text-danger">
+
+          <div *ngIf="product.controls['ProductStock'].hasError('required')">
+            The stock field is mandatory
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-default" [routerLink]="['/settings-product']">Cancel</button>
+        <input type="submit" class="btn btn-success" value="Save" [disabled]="!product.valid" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--<div style="margin:1em">-->
+  <div style="margin:1em" *ngIf="!product.valid">
+    <div class="alert  alert-danger">The form is not valid</div>
+  </div>
+

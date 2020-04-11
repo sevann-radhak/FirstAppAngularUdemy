@@ -12,8 +12,28 @@ export class ProductService
     this.urlBase = baseUrl;
   }
 
+  public deleteProduct(idProduct) {
+    return this.http.get(`${this.urlBase}api/Product/deleteProduct/${idProduct}`)
+      .map(res => res.json());
+  }
+
   public getProduct() {
     return this.http.get(`${this.urlBase}api/Product/ProductsList`).map(res => res.json());
+  }
+
+  public listMarks() {
+    return this.http.get(`${this.urlBase}api/Product/listMarks`)
+      .map(res => res.json());
+  }
+
+  public getProductById(productId) {
+    return this.http.get(`${this.urlBase}api/Product/getProductById/${productId}`)
+      .map(res => res.json());
+  }
+
+  public registerProduct(productCLS) {
+    return this.http.post(`${this.urlBase}api/Product/registerProduct`, productCLS)
+      .map(res => res.json());
   }
 
   public searchProducts(product) {

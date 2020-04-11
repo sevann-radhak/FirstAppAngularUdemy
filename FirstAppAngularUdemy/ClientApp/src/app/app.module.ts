@@ -33,6 +33,8 @@ import { ProductService } from './services/Product.Service';
 import { UserService } from './services/user.service';
 import { SettingsPersonComponent } from './components/settings-person/settings-person.component';
 import { SettingsFormPersonComponent } from './components/settings-form-person/settings-form-person.component';
+import { SettingsProductComponent } from './components/settings-product/settings-product.component';
+import { SettingsFormProductComponent } from './components/settings-form-product/settings-form-product.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { SettingsFormPersonComponent } from './components/settings-form-person/s
     FilterUserTypeuserComponent,
     TableUserComponent,
     SettingsPersonComponent,
-    SettingsFormPersonComponent
+    SettingsFormPersonComponent,
+    SettingsProductComponent,
+    SettingsFormProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -74,6 +78,8 @@ import { SettingsFormPersonComponent } from './components/settings-form-person/s
       { path: 'filter-user-usertype', component: FilterUserTypeuserComponent },
       { path: 'settings-person', component: SettingsPersonComponent },
       { path: 'settings-person/:id', component: SettingsFormPersonComponent },
+      { path: 'settings-product', component: SettingsProductComponent },
+      { path: 'settings-product/:id', component: SettingsFormProductComponent },
     ])
   ],
   providers: [CategoryService, PersonService, ProductService, UserService],

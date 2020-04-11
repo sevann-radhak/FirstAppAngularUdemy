@@ -16,5 +16,15 @@ namespace FirstAppAngularUdemy.Classes
         public int ProductStock { get; set; }
 
         public string CategoryName { get; set; }
+
+        public string MarkName { get; set; }
+
+        public int idmarca { get; set; }
+
+        public int idcategoria { get; set; }
+
+        public CategoryCLS CategoryCLS { get; set; }
+
+        public MarkCLS MarkCLS { get; set; }
     }
 }

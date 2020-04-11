@@ -57,6 +57,11 @@
                 <span class='glyphicon glyphicon-th-list'></span> Settings person
               </a>
             </li>
+            <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/settings-product"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Settings product
+              </a>
+            </li>
           </ul>
         </div>
     </div>
