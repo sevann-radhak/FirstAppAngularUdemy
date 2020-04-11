@@ -13,6 +13,7 @@ export class TableProductComponent implements OnInit {
 
   @Input() products: any;
   @Input() isSettings: false;
+  p: number = 1;
   headers: string[] = ["Id Product", "Name", "Price", "Stock", "Category"]
 
   constructor(private productService: ProductService)

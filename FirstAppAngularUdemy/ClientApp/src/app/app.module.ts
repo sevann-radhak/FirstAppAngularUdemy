@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HttpModule } from '@angular/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // Register components
 import { ButtonAgregar } from './components/button/Button.compoent';
@@ -25,16 +26,16 @@ import { FilterPersonNameComponent } from './components/filter-person-name/filte
 import { SearchUserTypeuserComponent } from './components/search-user-typeuser/search-user-typeuser.component';
 import { FilterUserTypeuserComponent } from './components/filter-user-typeuser/filter-user-typeuser.component';
 import { TableUserComponent } from './components/table-user/table-user.component';
+import { SettingsPersonComponent } from './components/settings-person/settings-person.component';
+import { SettingsFormPersonComponent } from './components/settings-form-person/settings-form-person.component';
+import { SettingsProductComponent } from './components/settings-product/settings-product.component';
+import { SettingsFormProductComponent } from './components/settings-form-product/settings-form-product.component';
 
 // Register services
 import { CategoryService } from './services/category.service';
 import { PersonService } from './services/person.service';
 import { ProductService } from './services/Product.Service';
 import { UserService } from './services/user.service';
-import { SettingsPersonComponent } from './components/settings-person/settings-person.component';
-import { SettingsFormPersonComponent } from './components/settings-form-person/settings-form-person.component';
-import { SettingsProductComponent } from './components/settings-product/settings-product.component';
-import { SettingsFormProductComponent } from './components/settings-form-product/settings-form-product.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { SettingsFormProductComponent } from './components/settings-form-product
     HttpClientModule,
     HttpModule,
     FormsModule,
+    NgxPaginationModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
