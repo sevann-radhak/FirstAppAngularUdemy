@@ -32,12 +32,18 @@ import { SettingsProductComponent } from './components/settings-product/settings
 import { SettingsFormProductComponent } from './components/settings-form-product/settings-form-product.component';
 import { SettingsUserComponent } from './components/settings-user/settings-user.component';
 import { SettingsFormUserComponent } from './components/settings-form-user/settings-form-user.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginErrorComponent } from './components/login-error/login-error.component';
+import { LoginPermissionsErrorComponent } from './components/login-permissions-error/login-permissions-error.component';
 
 // Register services
 import { CategoryService } from './services/category.service';
 import { PersonService } from './services/person.service';
 import { ProductService } from './services/Product.Service';
 import { UserService } from './services/user.service';
+
+// Guards
+import { SecurityGuard } from './components/guards/security.guard';
 
 @NgModule({
   declarations: [
@@ -64,7 +70,10 @@ import { UserService } from './services/user.service';
     SettingsProductComponent,
     SettingsFormProductComponent,
     SettingsUserComponent,
-    SettingsFormUserComponent
+    SettingsFormUserComponent,
+    LoginComponent,
+    LoginErrorComponent,
+    LoginPermissionsErrorComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -78,19 +87,22 @@ import { UserService } from './services/user.service';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'products-list', component: TableProductComponent },
-      { path: 'filter-product-name', component: FilterProductNameComponent },
-      { path: 'filter-product-category', component: FilterProductCategoryComponent },
-      { path: 'filter-person-name', component: FilterPersonNameComponent },
-      { path: 'filter-user-usertype', component: FilterUserTypeuserComponent },
+      { path: 'filter-product-name', component: FilterProductNameComponent, canActivate: [SecurityGuard] },
+      { path: 'filter-product-category', component: FilterProductCategoryComponent, pathMatch: 'full', canActivate: [SecurityGuard] },
+      { path: 'filter-person-name', component: FilterPersonNameComponent, canActivate: [SecurityGuard] },
+      { path: 'filter-user-usertype', component: FilterUserTypeuserComponent, canActivate: [SecurityGuard] },
       { path: 'settings-person', component: SettingsPersonComponent },
       { path: 'settings-person/:id', component: SettingsFormPersonComponent },
       { path: 'settings-product', component: SettingsProductComponent },
       { path: 'settings-product/:id', component: SettingsFormProductComponent },
       { path: 'settings-user', component: SettingsUserComponent },
       { path: 'settings-user/:id', component: SettingsFormUserComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'error-login', component: LoginErrorComponent },
+      { path: 'error-permissions-login', component: LoginPermissionsErrorComponent },
     ])
   ],
-  providers: [CategoryService, PersonService, ProductService, UserService],
+  providers: [CategoryService, PersonService, ProductService, UserService, SecurityGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

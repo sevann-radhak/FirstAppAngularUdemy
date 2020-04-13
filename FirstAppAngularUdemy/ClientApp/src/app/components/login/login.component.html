@@ -1,0 +1,33 @@
+<h1>{{title}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="user" (ngSubmit)="saveData()">
+      <div class="form-group">
+        <label>UserName</label>
+        <input type="text" class="form-control" formControlName="NameUser" placeholder="User name" />
+        <div *ngIf="validationControl('NameUser')" class="text-danger">
+          <div *ngIf="user.controls['NameUser'].hasError('required')">
+            The user name field is mandatory
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="Password" placeholder="Password" />
+        <div *ngIf="validationControl('Password')" class="text-danger">
+          <div *ngIf="user.controls['Password'].hasError('required')">
+            The password field is mandatory
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-default">Cancel</button>
+        <input type="submit" class="btn btn-success" value="Login" [disabled]="!user.valid" />
+      </div>
+    </form>
+  </div>
+</div>
+

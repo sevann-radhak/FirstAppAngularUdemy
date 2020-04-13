@@ -31,6 +31,11 @@ export class UserService {
       .map(res => res.json());
   }
 
+  public login(userCLS) {
+    return this.http.post(`${this.urlBase}api/Users/login`, userCLS)
+      .map(res => res.json());
+  }
+
   public saveData(userCLS) {
     console.log(userCLS);
 
