@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -7,7 +8,7 @@ export class UserService {
 
   urlBase: string = "";
 
-  constructor(private http: Http, @Inject("BASE_URL") baseUrl: string) {
+  constructor(private router: Router, private http: Http, @Inject("BASE_URL") baseUrl: string) {
     this.urlBase = baseUrl;
   }
 
@@ -24,6 +25,19 @@ export class UserService {
   public getUserType() {
     return this.http.get(`${this.urlBase}api/Users/ListUserType`)
       .map(res => res.json());
+  }
+
+  public getSessionValues() {
+    return this.http.get(`${this.urlBase}api/Users/getSessionValues`)
+      .map(res => {
+        if (res.json().value == '') {
+          this.router.navigate(['/login-error']);
+          return false;
+        }
+        else {
+          return true;
+        }
+      });
   }
 
   public getFilterUserByUserType(idUserType) {

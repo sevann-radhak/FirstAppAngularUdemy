@@ -44,6 +44,7 @@ import { UserService } from './services/user.service';
 
 // Guards
 import { SecurityGuard } from './components/guards/security.guard';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { SecurityGuard } from './components/guards/security.guard';
     SettingsFormUserComponent,
     LoginComponent,
     LoginErrorComponent,
-    LoginPermissionsErrorComponent
+    LoginPermissionsErrorComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -98,8 +100,9 @@ import { SecurityGuard } from './components/guards/security.guard';
       { path: 'settings-user', component: SettingsUserComponent },
       { path: 'settings-user/:id', component: SettingsFormUserComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'error-login', component: LoginErrorComponent },
-      { path: 'error-permissions-login', component: LoginPermissionsErrorComponent },
+      { path: 'login-error', component: LoginErrorComponent },
+      { path: 'login-error-permissions', component: LoginPermissionsErrorComponent },
+      { path: 'welcome', component: WelcomeComponent },
     ])
   ],
   providers: [CategoryService, PersonService, ProductService, UserService, SecurityGuard],

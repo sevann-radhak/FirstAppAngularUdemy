@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
+import { UserService } from './../../services/user.service';
 
 @Injectable()
 export class SecurityGuard implements CanActivate {
 
-  constructor(private router: Router) {
+  constructor(private userService: UserService) {
 
   }
 
@@ -14,7 +14,8 @@ export class SecurityGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    this.router.navigate(['/error-login'])
-    return false;
+    return this.userService.getSessionValues();
+    //this.router.navigate(['/error-login'])
+    //return false;
   }
 }

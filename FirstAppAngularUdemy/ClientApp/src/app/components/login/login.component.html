@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form [formGroup]="user" (ngSubmit)="saveData()">
+    <form [formGroup]="user" (ngSubmit)="login()">
       <div class="form-group">
         <label>UserName</label>
         <input type="text" class="form-control" formControlName="NameUser" placeholder="User name" />
@@ -28,6 +28,11 @@
         <input type="submit" class="btn btn-success" value="Login" [disabled]="!user.valid" />
       </div>
     </form>
+
+    <div class="alert alert-danger mt-4" *ngIf="error">
+      User or password incorrects.
+    </div>
+
   </div>
 </div>
 

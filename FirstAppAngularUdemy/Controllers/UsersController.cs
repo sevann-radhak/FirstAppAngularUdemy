@@ -8,6 +8,8 @@ using System.Transactions;
 using FirstAppAngularUdemy.Classes;
 using FirstAppAngularUdemy.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Http;
 
 namespace FirstAppAngularUdemy.Controllers
 {
@@ -130,19 +132,56 @@ namespace FirstAppAngularUdemy.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/Users/getSessionValues")]
+        public SecurityCLS getSessionValues()
+        {
+            SecurityCLS securityCLS = new SecurityCLS();
+            string sessionKey = HttpContext.Session.GetString("user");
+
+            securityCLS.value = sessionKey == null
+                ? ""
+                : sessionKey;
+
+            return securityCLS;
+        }
+
         [HttpPost]
         [Route("api/Users/login")]
-        public int login([FromBody]UserCLS userCLS)
+        public UserCLS login([FromBody]UserCLS userCLS)
         {
-            using(BDRestauranteContext bd = new BDRestauranteContext())
+            var response = 0;
+            UserCLS user = new UserCLS();
+
+            using (BDRestauranteContext bd = new BDRestauranteContext())
             {
                 SHA256Managed sha = new SHA256Managed();
                 byte[] dataPure = Encoding.Default.GetBytes(userCLS.Password);
                 byte[] encryptedData = sha.ComputeHash(dataPure);
                 string psswEncrypted = BitConverter.ToString(encryptedData).Replace("-", "");
 
-                return bd.Usuario.Where(u => u.Nombreusuario.ToLower() == userCLS.NameUser.ToLower() && u.Contra == psswEncrypted).Count();
+                response = bd.Usuario
+                    .Where(u => u.Nombreusuario.ToLower() == userCLS.NameUser.ToLower()
+                    && u.Contra == psswEncrypted).Count();
+
+                if(response == 1)
+                {
+                    Usuario ususario = bd.Usuario
+                    .Where(u => u.Nombreusuario.ToLower() == userCLS.NameUser.ToLower()
+                    && u.Contra == psswEncrypted).FirstOrDefault();
+
+                    HttpContext.Session.SetString("user", userCLS.IdUser.ToString());
+                    user.IdUser = ususario.Iidusuario;
+                    user.NameUser = ususario.Nombreusuario;
+                }
+                else
+                {
+                    user.IdUser = 0;
+                    user.NameUser = "";
+                }
             }
+
+            return user;
         }
 
         [HttpPost]
