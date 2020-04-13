@@ -19,7 +19,7 @@ export class SettingsFormPersonComponent implements OnInit {
     this.person = new FormGroup({
       'IdPerson': new FormControl("0"),
       'PhoneNumber': new FormControl("", [Validators.required, Validators.maxLength(10)]),
-      'Email': new FormControl("", [Validators.required, Validators.maxLength(150)]),
+      'Email': new FormControl("", [Validators.required, Validators.maxLength(150)], this.validationUniqueEmail.bind(this)),
       'Name': new FormControl("", [Validators.required, Validators.maxLength(100)]),
       "apPaterno": new FormControl("", [Validators.required, Validators.maxLength(150)]),
       'apMaterno': new FormControl("", [Validators.required, Validators.maxLength(150)]),
@@ -58,5 +58,18 @@ export class SettingsFormPersonComponent implements OnInit {
       this.personService.createPerson(this.person.value)
         .subscribe(data => { this.router.navigate(["settings-person"]) });
     }    
+  }
+
+  validationUniqueEmail(control: FormControl) {
+    let promise = new Promise((resolve, reject) => {
+      if (control.value != '' && control.value != null) {
+        this.personService.validateUniqueEmail(this.person.controls["IdPerson"].value, this.person.controls["Email"].value)
+          .subscribe(data => {
+            resolve(data == 1 ? {existsEmail: true} : null);
+          })
+      }
+    });
+
+    return promise;
   }
 }

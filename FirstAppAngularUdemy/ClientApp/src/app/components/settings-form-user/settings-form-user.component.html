@@ -1,0 +1,90 @@
+<h1>{{title}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="user" (ngSubmit)="saveData()">
+      <div class="form-group">
+        <label>Id User</label>
+        <input type="text" class="form-control" formControlName="IdUser" readonly />
+      </div>
+
+      <div class="form-group">
+        <label>User Name</label>
+        <input type="text" class="form-control" formControlName="NameUser" placeholder="User name" />
+        <div *ngIf="validationControl('NameUser')" class="text-danger">
+          <div *ngIf="user.controls['NameUser'].hasError('required')">
+            The user name field is mandatory
+          </div>
+
+          <div *ngIf="user.controls['NameUser'].hasError('maxlength')">
+            The user name can not have more than 100 characters
+          </div>
+
+          <div *ngIf="user.controls['NameUser'].hasError('existsUser')">
+            This user already exists
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="viewForm">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="Password" placeholder="Password" />
+        <div *ngIf="validationControl('Password')" class="text-danger">
+          <div *ngIf="user.controls['Password'].hasError('required')">
+            The password field is mandatory
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="viewForm">
+        <label>Repeat Password</label>
+        <input type="password" class="form-control" formControlName="PasswordCheck" placeholder="Password" />
+        <div *ngIf="validationControl('PasswordCheck')" class="text-danger">
+          <div *ngIf="user.controls['PasswordCheck'].hasError('required')">
+            The password-repeat field is mandatory
+          </div>
+
+          <div *ngIf="user.controls['PasswordCheck'].hasError('passwordNotEquals')">
+            The password and confirm are not equal
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="viewForm">
+        <label>Person</label>
+        <select formControlName="Person" class="form-control">
+          <option value="" hidden> -- Select -- </option>
+          <option *ngFor="let person of people" [value]="person"> {{person.fullName}} </option>
+        </select>
+        <div *ngIf="validationControl('Person')" class="text-danger">
+          <div *ngIf="user.controls['Person'].hasError('required')">
+            The person field is mandatory
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>User type</label>
+        <select formControlName="UserType" class="form-control">
+          <option value="" hidden> -- Select -- </option>
+          <option *ngFor="let userType of userTypes" [value]="userType.idUserType"> {{userType.description}} </option>
+        </select>
+        <div *ngIf="validationControl('UserType')" class="text-danger">
+          <div *ngIf="user.controls['UserType'].hasError('required')">
+            The user type field is mandatory
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-default" [routerLink]="['/settings-user']">Cancel</button>
+        <input type="submit" class="btn btn-success" value="Save" [disabled]="!user.valid" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div style="margin:1em" *ngIf="!user.valid">
+  <div class="alert  alert-danger">The form is not valid</div>
+</div>
+

@@ -30,6 +30,8 @@ import { SettingsPersonComponent } from './components/settings-person/settings-p
 import { SettingsFormPersonComponent } from './components/settings-form-person/settings-form-person.component';
 import { SettingsProductComponent } from './components/settings-product/settings-product.component';
 import { SettingsFormProductComponent } from './components/settings-form-product/settings-form-product.component';
+import { SettingsUserComponent } from './components/settings-user/settings-user.component';
+import { SettingsFormUserComponent } from './components/settings-form-user/settings-form-user.component';
 
 // Register services
 import { CategoryService } from './services/category.service';
@@ -60,7 +62,9 @@ import { UserService } from './services/user.service';
     SettingsPersonComponent,
     SettingsFormPersonComponent,
     SettingsProductComponent,
-    SettingsFormProductComponent
+    SettingsFormProductComponent,
+    SettingsUserComponent,
+    SettingsFormUserComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -82,6 +86,8 @@ import { UserService } from './services/user.service';
       { path: 'settings-person/:id', component: SettingsFormPersonComponent },
       { path: 'settings-product', component: SettingsProductComponent },
       { path: 'settings-product/:id', component: SettingsFormProductComponent },
+      { path: 'settings-user', component: SettingsUserComponent },
+      { path: 'settings-user/:id', component: SettingsFormUserComponent },
     ])
   ],
   providers: [CategoryService, PersonService, ProductService, UserService],

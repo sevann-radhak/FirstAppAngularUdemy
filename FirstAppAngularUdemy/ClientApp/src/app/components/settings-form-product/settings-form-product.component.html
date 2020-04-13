@@ -83,6 +83,10 @@
           <div *ngIf="product.controls['ProductStock'].hasError('required')">
             The stock field is mandatory
           </div>
+
+          <div *ngIf="product.controls['ProductStock'].hasError('decimalPoint')">
+            The stock field can not be a decimal value
+          </div>
         </div>
       </div>
 
@@ -94,7 +98,6 @@
   </div>
 </div>
 
-<!--<div style="margin:1em">-->
   <div style="margin:1em" *ngIf="!product.valid">
     <div class="alert  alert-danger">The form is not valid</div>
   </div>

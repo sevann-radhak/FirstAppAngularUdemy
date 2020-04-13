@@ -26,7 +26,7 @@ export class SettingsFormProductComponent implements OnInit {
       'IdProduct': new FormControl("0"),
       'ProductName': new FormControl("", [Validators.required, Validators.maxLength(100)]),
       'ProductPrice': new FormControl("0", Validators.required),
-      'ProductStock': new FormControl("0", Validators.required),
+      'ProductStock': new FormControl("0", [Validators.required, this.validationNotDecimal]),
       'idmarca': new FormControl("", Validators.required),
       'idcategoria': new FormControl("", Validators.required)
     });
@@ -58,5 +58,13 @@ export class SettingsFormProductComponent implements OnInit {
       this.productService.registerProduct(this.product.value)
         .subscribe(resp => this.router.navigate(['./settings-product']));
     }
+  }
+
+  validationNotDecimal(control: FormControl) {
+    if (control.value != null && control.value != '') {
+      return (<string>control.value.toString()).indexOf('.') > -1
+        ? { decimalPoint: true }
+        : null;
+    }    
   }
 }

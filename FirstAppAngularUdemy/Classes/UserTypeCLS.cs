@@ -10,5 +10,7 @@ namespace FirstAppAngularUdemy.Classes
         public int IdUserType { get; set; }
 
         public string Description { get; set; }
+
+        public string Name { get; set; }
     }
 }

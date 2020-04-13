@@ -22,6 +22,28 @@ namespace FirstAppAngularUdemy.Controllers
             {
                 return (from person in bd.Persona
                         where person.Bhabilitado == 1
+                        orderby person.Appaterno, person.Apmaterno
+                        select new PersonCLS
+                        {
+                            Birthday = (DateTime)person.Fechanacimiento,
+                            Email = person.Correo,
+                            FullName = $"{person.Nombre} {person.Appaterno} {person.Apmaterno}",
+                            IdPerson = person.Iidpersona,
+                            PhoneNumber = person.Telefono
+                        }).ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/People/ListPeopleCombo")]
+        public IEnumerable<PersonCLS> ListPeopleCombo()
+        {
+            using (BDRestauranteContext bd = new BDRestauranteContext())
+            {
+                return (from person in bd.Persona
+                        where person.Bhabilitado == 1
+                        && person.Btieneusuario == 0
+                        orderby person.Appaterno, person.Apmaterno
                         select new PersonCLS
                         {
                             Birthday = (DateTime)person.Fechanacimiento,
@@ -154,6 +176,25 @@ namespace FirstAppAngularUdemy.Controllers
                 }
 
                 return response;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/People/validateUniqueEmail/{id}/{email}")]
+        public int validateUniqueEmail(int id, string email)
+        {
+            try
+            {
+                using (BDRestauranteContext bd = new BDRestauranteContext())
+                {
+                    return id == 0
+                        ? bd.Persona.Where(p => p.Correo.ToLower() == email.ToLower()).Count()
+                        : bd.Persona.Where(p => p.Correo.ToLower() == email.ToLower() && p.Iidpersona != id).Count();
+                }
+            }
+            catch (System.Exception)
+            {
+                return 0;
             }
         }
     }

@@ -17,6 +17,11 @@ export class PersonService {
       .map(res => res.json());
   }
 
+  public ListPeopleCombo() {
+    return this.http.get(`${this.urlBase}api/People/ListPeopleCombo`)
+      .map(res => res.json());
+  }
+
   public getPersonFilter(name) {
     return this.http.get(`${this.urlBase}api/People/FilterPerson/${name}`)
       .map(res => res.json());
@@ -34,6 +39,11 @@ export class PersonService {
 
   public deletePerson(idPerson) {
     return this.http.get(`${this.urlBase}api/People/deletePerson/${idPerson}`)
+      .map(res => res.json());
+  }
+
+  public validateUniqueEmail(id, email) {
+    return this.http.get(`${this.urlBase}api/People/validateUniqueEmail/${id}/${email}`)
       .map(res => res.json());
   }
 }

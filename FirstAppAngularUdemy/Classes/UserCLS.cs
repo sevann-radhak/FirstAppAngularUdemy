@@ -15,6 +15,16 @@ namespace FirstAppAngularUdemy.Classes
 
         public int BAvailable { get; set; }
 
-        public string UserType { get; set; }
+        //public string UserType { get; set; }
+
+        public PersonCLS Person { get; set; }
+
+        public int iidPerson { get; set; }
+
+        public UserTypeCLS UserType { get; set; }
+
+        public string Password { get; set; }
+
+        public string PasswordCheck { get; set; }
     }
 }
