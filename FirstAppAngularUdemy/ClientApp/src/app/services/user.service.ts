@@ -12,6 +12,11 @@ export class UserService {
     this.urlBase = baseUrl;
   }
 
+  public listPages() {
+    return this.http.get(`${this.urlBase}api/Users/ListPages`)
+      .map(res => res.json());
+  }
+
   public getUser() {
     return this.http.get(`${this.urlBase}api/Users/ListUser`)
       .map(res => res.json());

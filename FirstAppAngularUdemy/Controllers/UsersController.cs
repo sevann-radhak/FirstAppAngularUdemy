@@ -146,6 +146,29 @@ namespace FirstAppAngularUdemy.Controllers
             return securityCLS;
         }
 
+        [HttpGet]
+        [Route("api/Users/ListPages")]
+        public List<PageCLS> ListPages()
+        {
+            int idUserType = int.Parse(HttpContext.Session.GetString("userType"));
+
+            using(BDRestauranteContext bd = new BDRestauranteContext())
+            {
+                return (from pageType in bd.PaginaTipoUsuario
+                        join page in bd.Pagina
+                        on pageType.Iidpagina equals page.Iidpagina
+                        where pageType.Bhabilitado == 1
+                        && pageType.Iidtipousuario == idUserType
+                        select new PageCLS
+                        {
+                            accion = page.Accion,
+                            bhabilitado = (int)page.Bhabilitado,
+                            iidpagina = page.Iidpagina,
+                            mensaje = page.Mensaje
+                        }).ToList();
+            }
+        }
+
         [HttpPost]
         [Route("api/Users/login")]
         public UserCLS login([FromBody]UserCLS userCLS)
@@ -170,7 +193,8 @@ namespace FirstAppAngularUdemy.Controllers
                     .Where(u => u.Nombreusuario.ToLower() == userCLS.NameUser.ToLower()
                     && u.Contra == psswEncrypted).FirstOrDefault();
 
-                    HttpContext.Session.SetString("user", userCLS.IdUser.ToString());
+                    HttpContext.Session.SetString("user", ususario.Iidusuario.ToString());
+                    HttpContext.Session.SetString("userType", ususario.Iidtipousuario.ToString());
                     user.IdUser = ususario.Iidusuario;
                     user.NameUser = ususario.Nombreusuario;
                 }
@@ -193,6 +217,7 @@ namespace FirstAppAngularUdemy.Controllers
             try
             {
                 HttpContext.Session.Remove("user");
+                HttpContext.Session.Remove("userType");
                 securityCLS.value = "OK";
             }
             catch (Exception)
