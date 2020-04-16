@@ -40,6 +40,13 @@ export class UserService {
       });
   }
 
+  public getSession() {
+    return this.http.get(`${this.urlBase}api/Users/getSessionValues`)
+      .map(res => {
+        return res.json().value == '' ? false : true;
+      });
+  }
+
   public getFilterUserByUserType(idUserType) {
     return this.http.get(`${this.urlBase}api/Users/FilterUserByUserType/${idUserType}`)
       .map(res => res.json());
@@ -50,9 +57,11 @@ export class UserService {
       .map(res => res.json());
   }
 
-  public saveData(userCLS) {
-    console.log(userCLS);
+  public logout() {
+    return this.http.get(`${this.urlBase}api/Users/Logout`).map(res => res.json());
+  }
 
+  public saveData(userCLS) {
     return this.http.post(`${this.urlBase}api/Users/saveData`, userCLS)
       .map(res => res.json());
   }

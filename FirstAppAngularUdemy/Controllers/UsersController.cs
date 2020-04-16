@@ -184,6 +184,25 @@ namespace FirstAppAngularUdemy.Controllers
             return user;
         }
 
+        [HttpGet]
+        [Route("api/Users/Logout")]
+        public SecurityCLS Logout()
+        {
+            SecurityCLS securityCLS = new SecurityCLS();
+
+            try
+            {
+                HttpContext.Session.Remove("user");
+                securityCLS.value = "OK";
+            }
+            catch (Exception)
+            {
+                securityCLS.value = string.Empty;
+            }
+
+            return securityCLS;
+        }
+
         [HttpPost]
         [Route("api/Users/saveData")]
         public int saveData([FromBody]UserCLS userCLS)

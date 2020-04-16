@@ -27,10 +27,16 @@
       <span class='glyphicon glyphicon-th-list'></span> Fetch data
     </a>
   </li>-->
+
             <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/login"]' (click)='collapse()'>
+              <a [routerLink]='["/login"]' (click)='collapse()' *ngIf="!login; else logout">
                 <span class='glyphicon glyphicon-th-list'></span> Login
               </a>
+              <ng-template #logout>
+                <a (click)='collapse()'>
+                  <span class='glyphicon glyphicon-th-list'></span> Logout
+                </a>
+              </ng-template>
             </li>
             <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/products-list"]' (click)='collapse()'>
