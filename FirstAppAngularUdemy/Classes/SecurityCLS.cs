@@ -10,5 +10,7 @@ namespace FirstAppAngularUdemy.Classes
         public string key { get; set; }
 
         public string value { get; set; }
+
+        public List<PageCLS> lista { get; set; }
     }
 }

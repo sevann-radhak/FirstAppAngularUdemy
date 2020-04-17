@@ -14,8 +14,6 @@ export class SecurityGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    return this.userService.getSessionValues();
-    //this.router.navigate(['/error-login'])
-    //return false;
+    return this.userService.getSessionValues(next);
   }
 }

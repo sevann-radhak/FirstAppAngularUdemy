@@ -32,14 +32,26 @@ export class UserService {
       .map(res => res.json());
   }
 
-  public getSessionValues() {
-    return this.http.get(`${this.urlBase}api/Users/getSessionValues`)
-      .map(res => {
-        if (res.json().value == '') {
+  public getSessionValues(next) {
+    return this.http.get(`${this.urlBase}api/Users/getSessionValues`).map(res => {
+        var data = res.json();
+        if (data.value == '') {
           this.router.navigate(['/login-error']);
           return false;
         }
         else {
+          var page = next["url"][0].path;
+          if (data.lista != null) {
+            var pages = data.lista.map(page => page.accion);
+
+            if (pages.indexOf(page) > -1 && (page != 'login' && page != 'Login')) {
+              return true;
+            } else {
+              this.router.navigate(['login-error-permissions']);
+              return false;
+            }
+          }
+
           return true;
         }
       });

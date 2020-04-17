@@ -27,57 +27,74 @@
       <span class='glyphicon glyphicon-th-list'></span> Fetch data
     </a>
   </li>-->
-
-            <li [routerLinkActive]='["link-active"]'>
+            <!--<li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/login"]' (click)='collapse()' *ngIf="!login; else logout">
                 <span class='glyphicon glyphicon-th-list'></span> Login
               </a>
               <ng-template #logout>
-                <a (click)='collapse()'>
+                <a (click)="logout()">
                   <span class='glyphicon glyphicon-th-list'></span> Logout
                 </a>
               </ng-template>
-            </li>
+            </li>-->
+
             <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/products-list"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Products List
+              <a [routerLink]='["/login"]' *ngIf="!login">
+                <span class='glyphicon glyphicon-th-list'></span> Login
               </a>
             </li>
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/filter-product-name"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Filter Product by Name
+              <li [routerLinkActive]='["link-active"]'>
+                <a (click)='logout()' *ngIf="login">
+                  <span class='glyphicon glyphicon-th-list'></span> Logout
+                </a>
+              </li>
+
+            <li [routerLinkActive]='["link-active"]' *ngFor="let menu of menus">
+              <a [routerLink]='[menu.accion]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> {{menu.mensaje}}
               </a>
             </li>
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/filter-product-category"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Filter Product by Category
-              </a>
-            </li>
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/filter-person-name"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Filter Person
-              </a>
-            </li>
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/filter-user-usertype"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Filter User by User type
-              </a>
-            </li>
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/settings-person"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Settings person
-              </a>
-            </li>
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/settings-product"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Settings product
-              </a>
-            </li>
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/settings-user"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Settings users
-              </a>
-            </li>
+
+            <!--<li [routerLinkActive]='["link-active"]'>
+    <a [routerLink]='["/products-list"]' (click)='collapse()'>
+      <span class='glyphicon glyphicon-th-list'></span> Products List
+    </a>
+  </li>
+  <li [routerLinkActive]='["link-active"]'>
+    <a [routerLink]='["/filter-product-name"]' (click)='collapse()'>
+      <span class='glyphicon glyphicon-th-list'></span> Filter Product by Name
+    </a>
+  </li>
+  <li [routerLinkActive]='["link-active"]'>
+    <a [routerLink]='["/filter-product-category"]' (click)='collapse()'>
+      <span class='glyphicon glyphicon-th-list'></span> Filter Product by Category
+    </a>
+  </li>
+  <li [routerLinkActive]='["link-active"]'>
+    <a [routerLink]='["/filter-person-name"]' (click)='collapse()'>
+      <span class='glyphicon glyphicon-th-list'></span> Filter Person
+    </a>
+  </li>
+  <li [routerLinkActive]='["link-active"]'>
+    <a [routerLink]='["/filter-user-usertype"]' (click)='collapse()'>
+      <span class='glyphicon glyphicon-th-list'></span> Filter User by User type
+    </a>
+  </li>
+  <li [routerLinkActive]='["link-active"]'>
+    <a [routerLink]='["/settings-person"]' (click)='collapse()'>
+      <span class='glyphicon glyphicon-th-list'></span> Settings person
+    </a>
+  </li>
+  <li [routerLinkActive]='["link-active"]'>
+    <a [routerLink]='["/settings-product"]' (click)='collapse()'>
+      <span class='glyphicon glyphicon-th-list'></span> Settings product
+    </a>
+  </li>
+  <li [routerLinkActive]='["link-active"]'>
+    <a [routerLink]='["/settings-user"]' (click)='collapse()'>
+      <span class='glyphicon glyphicon-th-list'></span> Settings users
+    </a>
+  </li>-->
           </ul>
         </div>
     </div>

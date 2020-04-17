@@ -18,12 +18,7 @@ export class NavMenuComponent implements OnInit {
     this.userService.getSession().subscribe(data => {
       if (data) {
         this.login = true
-        this.userService.listPages().subscribe(p => this.menus = p);
-
-        // Actualizar en el nav menu html las opciones para que tome con un ngFor las de menues,
-        // pero habría que cambiar todas las paths en el appmodule para que hagan match con los valores en bd
-        // esto permitiría ver el menu que le corresponde a cada usuario según su tipo de usuario ;)
-
+        this.userService.listPages().subscribe(m => { this.menus = m });
       } else {
         this.login = false;
         this.router.navigate(['/login']);
@@ -42,7 +37,8 @@ export class NavMenuComponent implements OnInit {
       if (res.value == "OK") {
         this.login = false;
         this.router.navigate(['/login']);
-    }
+      }
+      this.collapse();
     });
   }
 

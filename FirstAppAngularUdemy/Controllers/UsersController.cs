@@ -139,9 +139,32 @@ namespace FirstAppAngularUdemy.Controllers
             SecurityCLS securityCLS = new SecurityCLS();
             string sessionKey = HttpContext.Session.GetString("user");
 
-            securityCLS.value = sessionKey == null
-                ? ""
-                : sessionKey;
+            if (sessionKey == null)
+            {
+                securityCLS.value = "";
+            } else { 
+                securityCLS.value = sessionKey;
+                List<PageCLS> pageList = new List<PageCLS>();
+                int idUser = int.Parse(HttpContext.Session.GetString("user"));
+                int idUserType = int.Parse(HttpContext.Session.GetString("userType"));
+
+                using (BDRestauranteContext bd = new BDRestauranteContext())
+                {
+                    securityCLS.lista = (from user in bd.Usuario
+                                         join userType in bd.TipoUsuario
+                                         on user.Iidtipousuario equals userType.Iidtipousuario
+                                         join pageType in bd.PaginaTipoUsuario
+                                         on user.Iidtipousuario equals pageType.Iidtipousuario
+                                         join page in bd.Pagina
+                                         on pageType.Iidpagina equals page.Iidpagina
+                                         where user.Iidusuario == idUser
+                                         && user.Iidtipousuario == idUserType
+                                         select new PageCLS
+                                         {
+                                             accion = page.Accion.Substring(1)
+                                         }).ToList();
+                }
+            }
 
             return securityCLS;
         }
