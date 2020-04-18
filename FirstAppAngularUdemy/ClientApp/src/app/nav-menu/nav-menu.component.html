@@ -28,26 +28,32 @@
     </a>
   </li>-->
             <!--<li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/login"]' (click)='collapse()' *ngIf="!login; else logout">
-                <span class='glyphicon glyphicon-th-list'></span> Login
-              </a>
-              <ng-template #logout>
-                <a (click)="logout()">
-                  <span class='glyphicon glyphicon-th-list'></span> Logout
-                </a>
-              </ng-template>
-            </li>-->
+    <a [routerLink]='["/login"]' (click)='collapse()' *ngIf="!login; else logout">
+      <span class='glyphicon glyphicon-th-list'></span> Login
+    </a>
+    <ng-template #logout>
+      <a (click)="logout()">
+        <span class='glyphicon glyphicon-th-list'></span> Logout
+      </a>
+    </ng-template>
+  </li>-->
 
             <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/login"]' *ngIf="!login">
                 <span class='glyphicon glyphicon-th-list'></span> Login
               </a>
             </li>
-              <li [routerLinkActive]='["link-active"]'>
-                <a (click)='logout()' *ngIf="login">
-                  <span class='glyphicon glyphicon-th-list'></span> Logout
-                </a>
-              </li>
+            <li [routerLinkActive]='["link-active"]'>
+              <a (click)='logout()' *ngIf="login">
+                <span class='glyphicon glyphicon-th-list'></span> Logout
+              </a>
+            </li>
+
+            <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]="['/settings-usertype']" (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Settings user type
+              </a>
+            </li>
 
             <li [routerLinkActive]='["link-active"]' *ngFor="let menu of menus">
               <a [routerLink]='[menu.accion]' (click)='collapse()'>

@@ -12,5 +12,13 @@ namespace FirstAppAngularUdemy.Classes
         public string Description { get; set; }
 
         public string Name { get; set; }
+
+        public string descripcion { get; set; }
+
+        public int bhabilitado { get; set; }
+
+        public string values { get; set; }
+
+        public List<PageCLS> listPageCLS { get; set; }
     }
 }

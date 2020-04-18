@@ -1,0 +1,56 @@
+<h1>{{title}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="userType" (ngSubmit)="saveData()">
+      <div class="form-group">
+        <label>ID</label>
+        <input type="text" class="form-control" readonly formControlName="IdUserType" />
+      </div>
+
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="Name" />
+
+        <div *ngIf="validationControl('Name')" class="text-danger">
+          <div *ngIf="userType.controls['Name'].hasError('required')">
+            The name field is mandatory
+          </div>
+
+          <div *ngIf="userType.controls['Name'].hasError('maxlength')">
+            The name can not have more than 100 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" formControlName="Description" />
+
+        <div *ngIf="validationControl('Description')" class="text-danger">
+          <div *ngIf="userType.controls['Description'].hasError('required')">
+            The description field is mandatory
+          </div>
+
+          <div *ngIf="userType.controls['Description'].hasError('maxlength')">
+            The name can not have more than 100 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Select Pages</label>
+        <div *ngFor="let page of pages">
+          <input class="check" [name]="page.iidpagina" type="checkbox" (change)="viewCheck()" />
+          <label>{{page.mensaje}}</label>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-default" [routerLink]="['/settings-usertype']">Cancel</button>
+        <input type="submit" class="btn btn-success" value="Save" [disabled]="!userType.valid" />
+      </div>
+    </form>
+  </div>
+</div>
+

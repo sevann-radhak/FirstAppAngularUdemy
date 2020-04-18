@@ -42,7 +42,6 @@ export class SettingsFormProductComponent implements OnInit {
     this.categoryService.getCategories().subscribe(c => this.categories = c);
     this.parameter != "new"
       ? this.productService.getProductById(this.parameter).subscribe(p => {
-        console.log(p);
         this.product.controls['IdProduct'].setValue(p.idProduct);
         this.product.controls['ProductName'].setValue(p.productName);
         this.product.controls['ProductPrice'].setValue(p.productPrice);

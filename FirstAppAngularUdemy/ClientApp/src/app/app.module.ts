@@ -35,6 +35,10 @@ import { SettingsFormUserComponent } from './components/settings-form-user/setti
 import { LoginComponent } from './components/login/login.component';
 import { LoginErrorComponent } from './components/login-error/login-error.component';
 import { LoginPermissionsErrorComponent } from './components/login-permissions-error/login-permissions-error.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { SettingsUsertypeComponent } from './components/settings-usertype/settings-usertype.component';
+import { SettingsFormUsertypeComponent } from './components/settings-form-usertype/settings-form-usertype.component';
+import { TableUsertypeComponent } from './components/table-usertype/table-usertype.component';
 
 // Register services
 import { CategoryService } from './services/category.service';
@@ -44,7 +48,6 @@ import { UserService } from './services/user.service';
 
 // Guards
 import { SecurityGuard } from './components/guards/security.guard';
-import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,10 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     LoginComponent,
     LoginErrorComponent,
     LoginPermissionsErrorComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    SettingsUsertypeComponent,
+    SettingsFormUsertypeComponent,
+    TableUsertypeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -103,6 +109,9 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
       { path: 'login-error', component: LoginErrorComponent },
       { path: 'login-error-permissions', component: LoginPermissionsErrorComponent },
       { path: 'welcome', component: WelcomeComponent },
+      { path: 'settings-usertype', component: SettingsUsertypeComponent },
+      { path: 'settings-usertype/:id', component: SettingsFormUsertypeComponent },
+      //{ path: 'table-usertype', component: TableUsertypeComponent },
     ])
   ],
   providers: [CategoryService, PersonService, ProductService, UserService, SecurityGuard],

@@ -12,8 +12,8 @@ export class UserService {
     this.urlBase = baseUrl;
   }
 
-  public listPages() {
-    return this.http.get(`${this.urlBase}api/Users/ListPages`)
+  public DeleteUserType(idUserType) {
+    return this.http.get(`${this.urlBase}api/UserTypes/DeleteUserType/${idUserType}`)
       .map(res => res.json());
   }
 
@@ -69,6 +69,26 @@ export class UserService {
       .map(res => res.json());
   }
 
+  public listPages() {
+    return this.http.get(`${this.urlBase}api/Users/ListPages`)
+      .map(res => res.json());
+  }
+
+  public ListPagesRecover(idUserType) {
+    return this.http.get(`${this.urlBase}api/UserTypes/ListPagesRecover/${idUserType}`)
+      .map(res => res.json());
+  }
+
+  public ListUserTypePages() {
+    return this.http.get(`${this.urlBase}api/UserTypes/ListUserTypePages`)
+      .map(res => res.json());
+  }
+
+  public listUserTypes() {
+    return this.http.get(`${this.urlBase}api/UserTypes/ListUserType`)
+      .map(res => res.json());
+  }
+
   public login(userCLS) {
     return this.http.post(`${this.urlBase}api/Users/login`, userCLS)
       .map(res => res.json());
@@ -80,6 +100,11 @@ export class UserService {
 
   public saveData(userCLS) {
     return this.http.post(`${this.urlBase}api/Users/saveData`, userCLS)
+      .map(res => res.json());
+  }
+
+  public saveDataUserType(userTypeCLS) {
+    return this.http.post(`${this.urlBase}api/UserTypes/SaveData`, userTypeCLS)
       .map(res => res.json());
   }
 
